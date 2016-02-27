@@ -1,0 +1,180 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="Styles/MainPage.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="Scripts/jquery-1.6.2.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.6.2-vsdoc.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui-1.8.14.custom.min.js" type="text/javascript"></script>
+    <script src="Scripts/MainPage.js" type="text/javascript"></script>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <br />
+            <div class="title">
+                <asp:Image ID="IM_Title" runat="server" Height="260px" Width="1000px" ImageUrl="~/images/3.jpg" />
+            </div>
+            <div class="loginDisplay">
+            <%
+                if (Page.User.Identity.IsAuthenticated == false)
+                {
+
+                }
+                else
+                {
+
+
+                 %>
+                您好，<%=Page.User.Identity.Name %>
+                ，欢迎登录蓉生药品管理系统,您可以<asp:LoginStatus ID="LoginStatus1" runat="server" /></div>
+                <%} %>
+        </div>
+        <div class="main">
+            <div class="daohang">
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+                <ajax:Accordion ID="Accordion1" runat="server" CssClass="Accordion">
+                    <Panes>
+                        <ajax:AccordionPane ID="AccordionPane1" runat="server">
+                            <Header>
+                                <asp:Button ID="BT_Stock_Manager" runat="server" Enabled="False" Height="28px" Width="218px"
+                                    Text="进货管理" BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large"
+                                    Font-Strikeout="False"></asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="BT_Stock" runat="server" Text="进货单" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Purchase/Purchase.aspx" /><br />
+                                <asp:Button ID="BT_Up_Stock" runat="server" Text="修改进货单" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Purchase/Up_Purchase.aspx" />
+                            </Content>
+                        </ajax:AccordionPane>
+                        <ajax:AccordionPane ID="AccordionPane2" runat="server">
+                            <Header>
+                                <asp:Button ID="BT_Store_Manager" runat="server" Enabled="False" Height="28px" Width="218px"
+                                    Text="库存管理" BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large"
+                                    Font-Strikeout="False"></asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="BT_Store" runat="server" Text="收货" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Inventory/Inventory.aspx" /><br />
+                                <asp:Button ID="BT_Dis" runat="server" Text="发配到门店" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Inventory/Distribute.aspx" />
+                            </Content>
+                        </ajax:AccordionPane>
+                        <ajax:AccordionPane ID="AccordionPane3" runat="server">
+                            <Header>
+                                <asp:Button ID="BT_Sell_Manager" runat="server" Enabled="False" Height="28px" Width="218px"
+                                    Text="店铺管理" BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large"
+                                    Font-Strikeout="False"></asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="BT_Get_Goods" runat="server" Text="收货" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Sell/GetGoods.aspx" /><br />
+                                <asp:Button ID="BT_Sell" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Sell/Sell_Day.aspx" Text="发卖" />
+                                <asp:Button ID="BT_Back_Goods" runat="server" Text="退货" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Sell/GetBack.aspx" /><br />
+                                <asp:Button ID="BT_Day_Sell" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Sell/Day_Count.aspx" Text="日结" />
+                            </Content>
+                        </ajax:AccordionPane>
+                        <ajax:AccordionPane ID="AccordionPane4" runat="server">
+                            <Header>
+                                <asp:Button ID="b4" runat="server" Enabled="False" Height="28px" Width="218px" Text="人事管理"
+                                    BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large" Font-Strikeout="False">
+                                </asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="BT_Add_User" runat="server" Text="添加新员工" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Personnel/register.aspx" /><br />
+                                <asp:Button ID="BT_Select_User" runat="server" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Personnel/SelectUsers.aspx" Text="查找员工信息" />
+                                <asp:Button ID="BT_Select_All" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Personnel/all.aspx" Text="查看所有员工" />
+                                <asp:Button ID="BT_Pulish" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Personnel/RewardAndPunishment.aspx" Text="员工奖惩" />
+                            </Content>
+                        </ajax:AccordionPane>
+                        <ajax:AccordionPane ID="AccordionPane5" runat="server">
+                            <Header>
+                                <asp:Button ID="b5" runat="server" Enabled="False" Height="28px" Width="218px" Text="财务管理"
+                                    BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large" Font-Strikeout="False">
+                                </asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="BT_DailyCost" runat="server" Text="日常消费记录" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Finance/DailyCostRecord.aspx" /><br />
+                                <asp:Button ID="BT_Asset" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Finance/financeAsset.aspx" Text="购买固件" />
+                                <asp:Button ID="BT_StockList" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Finance/financeStock.aspx" Text="购买药品" />
+                                <asp:Button ID="BT_Salary" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Finance/financeSalary.aspx" Text="发放薪水" />
+                                <asp:Button ID="BT_Record" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Finance/Record.aspx" Text="查询资金流向" />
+                                <asp:Button ID="BT_Profit" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Finance/SellProfit.aspx" Text="查询总利润" />
+                            </Content>
+                        </ajax:AccordionPane>
+                        <ajax:AccordionPane ID="AccordionPane6" runat="server">
+                            <Header>
+                                <asp:Button ID="b6" runat="server" Enabled="False" Height="28px" Width="218px" Text="固定资产管理"
+                                    BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large" Font-Strikeout="False">
+                                </asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="增加固定资产" runat="server" Text="增加固定资产" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Fixed Assets/AddAssetForm.aspx" /><br />
+                                <asp:Button ID="减少固定资产" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Fixed Assets/SubtractAssetForm.aspx" Text="减少固定资产" /><br />
+                                <asp:Button ID="Button9" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Fixed Assets/RepairAssetForm.aspx" Text="送修固定资产" /><br />
+                                <asp:Button ID="Button10" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Fixed Assets/RepairedAssetForm.aspx" Text="完修固定资产" /><br />
+                                <asp:Button ID="Button2" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Fixed Assets/LessAssetForm.aspx" Text="租借固定资产" /><br />
+                                <asp:Button ID="Button17" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Fixed Assets/ReturnAssetForm.aspx" Text="归还固定资产" /><br />
+                            </Content>
+                        </ajax:AccordionPane>
+                        <ajax:AccordionPane ID="AccordionPane7" runat="server">
+                            <Header>
+                                <asp:Button ID="b7" runat="server" Enabled="False" Height="28px" Width="218px" Text="系统管理"
+                                    BackColor="#99CCFF" BorderStyle="Outset" Font-Bold="True" Font-Size="Large" Font-Strikeout="False">
+                                </asp:Button></Header>
+                            <Content>
+                                <asp:Button ID="BT_Add_Product" runat="server" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Manager/Insert_Product.aspx" Text="添加药品信息" /><br />
+                                <asp:Button ID="BT_Up_Product" runat="server" BackColor="#D5ECFD" Height="26px" Width="197px"
+                                    PostBackUrl="~/Account/Manager/Up_Product.aspx" Text="修改药品信息" />
+                                <asp:Button ID="BT_Add_Producer" runat="server" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Manager/Insert_Producer.aspx" Text="添加生产商信息" />
+                                     <asp:Button ID="Button1" runat="server" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Manager/Add_Shop.aspx" Text="店铺管理" />
+                                <asp:Button ID="BT_Specification" runat="server" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Manager/Insert_Specification.aspx" Text="添加规格信息" />
+<%--                                    <asp:Button ID="BT_Roll" runat="server" BackColor="#D5ECFD" Height="26px"
+                                    Width="197px" PostBackUrl="~/Account/Manager/BT_Roll.aspx" Text="数据备份" />--%>
+                            </Content>
+                        </ajax:AccordionPane>
+                    </Panes>
+                </ajax:Accordion>
+                <br />
+            </div>
+            <div class="maincontent">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <asp:Image ID="IM_Logo" runat="server" Height="80px" Width="140px" ImageUrl="~/images/logo.png" /><br />
+        版权声明©2011 王琴、杨惠瑗、罗莉梅、王爱民、杜天行<br />
+        文明办网文明上网举报电话：010-82615762 举报邮箱：<a href="#" class="fot" style="color: Gray">dutianhang@.sina.com</a>
+        <br />
+    </div>
+    </form>
+</body>
+</html>
